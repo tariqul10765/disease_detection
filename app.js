@@ -39,6 +39,13 @@ app.post('/disease', (req, res) => {
             //     data: diseaseSplit
             // })
         });
+        disease.stderr.on('data', (data) => {
+            // console.error(`stderr: ${data}`);
+            res.json({
+                message: 'Disease get successfully close',
+                data: data
+            })
+        });
         disease.on('close', function (code) {
             const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
             console.log(diseaseSplit);
