@@ -45,7 +45,7 @@ app.post('/disease', (req, res) => {
 
             res.json({
                 message: 'Disease get successfully close',
-                diseaseSplit
+                data: 'diseaseSplit'
             })
         });
 
