@@ -4,7 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv').config()
 
 
-const port = 5000;
+const port = process.env.PORT;
 // Cross Unblocked File..
 const cors = require('cors');
 
