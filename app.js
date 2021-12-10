@@ -40,10 +40,11 @@ app.post('/disease', (req, res) => {
             // })
         });
         disease.stderr.on('data', (data) => {
-            // console.error(`stderr: ${data}`);
+            result += data.toString();
+            const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
             res.json({
                 message: 'Error occure',
-                data: data
+                data: diseaseSplit
             })
         });
         disease.on('close', function (code) {
