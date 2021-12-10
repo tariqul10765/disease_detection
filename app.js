@@ -25,6 +25,20 @@ app.get('/', (req, res) => {
 })
 app.post('/', (req, res) => {
     const symptoms = req.body.symptoms;
+    const disease = spawn('python', ["./disease_prediction.py", symptoms]);
+
+    disease.stdout.on('data', function (data) {
+        result += data.toString();
+        const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
+
+        res.json({
+            message: 'Disease get successfully',
+            data: diseaseSplit
+        })
+    });
+    disease.on('close', function (code) {
+        // console.log("RESULT: ", result);
+    });
     res.json({
         message: 'Disease get successfully',
         data: symptoms
