@@ -31,7 +31,7 @@ app.post('/', (req, res) => {
     })
 })
 
-app.post('/disease', async (req, res) => {
+app.post('/disease', (req, res) => {
     try {
         let result = '';
         const symptoms = req.body.symptoms;
