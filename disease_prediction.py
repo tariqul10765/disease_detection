@@ -1,5 +1,5 @@
-from tkinter import *
-from tkinter import messagebox
+# from tkinter import *
+# from tkinter import messagebox
 import numpy as np
 import pandas as pd
 import sys
