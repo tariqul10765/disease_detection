@@ -23,26 +23,6 @@ app.use(cors())
 app.get('/', (req, res) => {
     res.send('<div style="width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center"><h1 style="color: blueviolet">API RUNNING...</h1><p style="color: lightcoral">Powered by Tariqul</p></div>')
 })
-app.post('/', (req, res) => {
-    const symptoms = req.body.symptoms;
-    const disease = spawn('python', ["./disease_prediction.py", symptoms]);
-
-    disease.stdout.on('data', function (data) {
-        result += data.toString();
-        const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
-
-        res.json({
-            message: 'Disease get successfully',
-            data: diseaseSplit
-        })
-    });
-    disease.on('close', function (code) {
-        res.json({
-            message: 'Disease get successfully from close',
-            data: symptoms
-        })
-    });
-})
 
 app.post('/disease', (req, res) => {
     try {
@@ -60,7 +40,12 @@ app.post('/disease', (req, res) => {
             })
         });
         disease.on('close', function (code) {
-            // console.log("RESULT: ", result);
+            const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
+
+            res.json({
+                message: 'Disease get successfully',
+                data: diseaseSplit
+            })
         });
 
 
