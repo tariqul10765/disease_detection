@@ -36,7 +36,7 @@ app.post('/disease', (req, res) => {
 
             res.json({
                 message: 'Disease get successfully',
-                data: diseaseSplit
+                data: data
             })
         });
         disease.stderr.on('data', (data) => {
