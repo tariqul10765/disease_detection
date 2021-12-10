@@ -32,15 +32,16 @@ app.post('/disease', (req, res) => {
 
         disease.stdout.on('data', function (data) {
             result += data.toString();
-            const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
+            // const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
 
-            res.json({
-                message: 'Disease get successfully',
-                data: diseaseSplit
-            })
+            // res.json({
+            //     message: 'Disease get successfully',
+            //     data: diseaseSplit
+            // })
         });
         disease.on('close', function (code) {
             const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
+            console.log(diseaseSplit);
 
             res.json({
                 message: 'Disease get successfully close',
