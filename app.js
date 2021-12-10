@@ -23,8 +23,15 @@ app.use(cors())
 app.get('/', (req, res) => {
     res.send('<div style="width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center"><h1 style="color: blueviolet">API RUNNING...</h1><p style="color: lightcoral">Powered by Tariqul</p></div>')
 })
+app.post('/', (req, res) => {
+    const symptoms = req.body.symptoms;
+    res.json({
+        message: 'Disease get successfully',
+        data: symptoms
+    })
+})
 
-app.post('/', async (req, res) => {
+app.post('/disease', async (req, res) => {
     try {
         let result = '';
         const symptoms = req.body.symptoms;
