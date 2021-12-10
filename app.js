@@ -52,7 +52,9 @@ app.post('/disease', (req, res) => {
 
 
     } catch (err) {
-        console.log(err);
+        res.json({
+            message: 'Error occure in disease',
+        })
     }
 })
 
