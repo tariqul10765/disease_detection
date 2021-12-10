@@ -38,7 +38,7 @@ app.post('/', (req, res) => {
     });
     disease.on('close', function (code) {
         res.json({
-            message: 'Disease get successfully',
+            message: 'Disease get successfully from close',
             data: symptoms
         })
     });
