@@ -44,7 +44,7 @@ app.post('/disease', (req, res) => {
             const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
             res.json({
                 message: 'Error occure',
-                data: data
+                data: result
             })
         });
         disease.on('close', function (code) {
