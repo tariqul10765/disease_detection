@@ -37,12 +37,11 @@ app.post('/', (req, res) => {
         })
     });
     disease.on('close', function (code) {
-        // console.log("RESULT: ", result);
+        res.json({
+            message: 'Disease get successfully',
+            data: symptoms
+        })
     });
-    res.json({
-        message: 'Disease get successfully',
-        data: symptoms
-    })
 })
 
 app.post('/disease', (req, res) => {
