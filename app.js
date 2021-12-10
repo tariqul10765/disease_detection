@@ -42,7 +42,7 @@ app.post('/disease', (req, res) => {
         disease.stderr.on('data', (data) => {
             // console.error(`stderr: ${data}`);
             res.json({
-                message: 'Disease get successfully close',
+                message: 'Error occure',
                 data: data
             })
         });
