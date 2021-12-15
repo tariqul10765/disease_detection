@@ -36,25 +36,20 @@ app.post('/disease', (req, res) => {
 
             res.json({
                 message: 'Disease get successfully',
-                data: data
+                data: diseaseSplit
             })
         });
-        disease.stderr.on('data', (data) => {
-            result += data.toString();
-            const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
-            res.json({
-                message: 'Error occure',
-                data: result
-            })
-        });
+        // disease.stderr.on('data', (data) => {
+        //     result += data.toString();
+        //     const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
+        //     res.json({
+        //         message: 'Error occure',
+        //         data: result
+        //     })
+        // });
         disease.on('close', function (code) {
             const diseaseSplit = result.split(`1.0\r\n41\r\n`)[1];
             console.log(diseaseSplit);
-
-            res.json({
-                message: 'Disease get successfully close',
-                data: 'diseaseSplit'
-            })
         });
 
 
