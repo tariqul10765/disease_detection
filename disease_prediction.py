@@ -3,6 +3,7 @@
 import numpy as np
 import pandas as pd
 import sys
+import json 
 
 l1 = ['itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing', 'shivering', 'chills', 'joint_pain',
       'stomach_pain', 'acidity', 'ulcers_on_tongue', 'muscle_wasting', 'vomiting', 'burning_micturition',
@@ -118,8 +119,9 @@ def NaiveBayes():
     gnb = gnb.fit(X, np.ravel(y))
     from sklearn.metrics import accuracy_score
     y_pred = gnb.predict(X_test)
-    print(accuracy_score(y_test, y_pred))
-    print(accuracy_score(y_test, y_pred, normalize=False))
+    accuracy = int(accuracy_score(y_test, y_pred) * 100)
+    # print(accuracy_score(y_test, y_pred))
+    # print(accuracy_score(y_test, y_pred, normalize=False))
 
     psymptoms = Symptom
 
@@ -139,7 +141,8 @@ def NaiveBayes():
             break
 
     if h == 'yes':
-        sys.stdout.write("{}".format((disease[a])))
+        data = { "disease": disease[a], "accuracy": accuracy }
+        sys.stdout.write("{}".format(json.dumps(data, indent = 4) ))
         # t3.delete("1.0", END)
         # t3.insert(END, disease[a])
     else:
